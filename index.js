@@ -12,5 +12,16 @@ const tutorials = [
 ];
 
 const titleCased = () => {
-  return tutorials
-}
+  return tutorials.map(tutorial => {
+    return tutorial.split(' ').map(word => {
+      // Handle specific words that should be in uppercase
+      if (['OO', 'API', 'NaN', 'JSONP'].includes(word.toUpperCase())) {
+        return word.toUpperCase();
+      }
+      // Capitalize the first letter and preserve camelCase or special terms
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
+  });
+};
+
+module.exports = titleCased;
